@@ -56,11 +56,17 @@ def generate_log_ticks(vmin, vmax):
     if vmax == 0:
         vmax = 1e-2
 
-    min_exp = np.floor(np.log10(abs(vmin)))  # Trova l'esponente minimo
-    max_exp = np.ceil(np.log10(abs(vmax)))   # Trova l'esponente massimo
+    min_exp = 0  # Trova l'esponente minimo
+    max_exp = int(np.ceil(np.log10(abs(vmax))))   # Trova l'esponente massimo
 
     tick_values = []
-    for exp in range(int(min_exp), int(max_exp) + 1):  # Espandiamo dinamicamente
-        tick_values.extend([10**exp])  # Aggiungiamo più valori per coprire bene l'intervallo
 
-    return np.array(sorted(set(tick_values)))  # Rimuoviamo duplicati e ordiniamo
+    if vmin < 0:
+        for exp in range(min_exp, max_exp + 1):
+            tick_values.append(-(10 ** exp))  # Aggiungiamo i valori negativi
+    if vmax > 0:
+        for exp in range(min_exp, max_exp + 1):
+            tick_values.append(10 ** exp)  # Aggiungiamo i valori positivi
+
+    tick_values.append(0)
+    return np.array(sorted(set(tick_values)), dtype=float)  # Rimuoviamo duplicati e ordiniamo
