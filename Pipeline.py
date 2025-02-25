@@ -9,11 +9,13 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.utils import compute_class_weight
 
 #Carica il dataset
-df = pd.read_csv('data/Prepared_Data.csv')
+df = pd.read_csv('data/Prepared_Data4.csv')
 
 #Divisione tra variabili indipendenti e dipendenti
 y = df['FLAG']
 x = df.drop(columns=['FLAG', 'ERC20_most_sent_token_type_encoded', 'ERC20_most_rec_token_type_encoded'])
+
+print(x.columns)
 
 #Divisione tra training e test set
 X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, stratify=y, random_state=42)
@@ -46,15 +48,23 @@ results_file = f"data/results/classification_results_{current_time}.txt"
 
 y_pred_proba = model.predict_proba(x_test_scaled)[:, 1]  # Probabilità di essere True
 
+train_accuracy = model.score(x_train_scaled, y_train)
+test_accuracy = model.score(x_test_scaled, y_test)
+
+print(f"Training Accuracy: {train_accuracy:.4f}")
+print(f"Test Accuracy: {test_accuracy:.4f}")
+
 # Scriviamo i risultati su file
 with open(results_file, "w") as f:
-    f.write("Risultati della classificazione:\n\n")
+    f.write("Training Accuracy: {:.4f}\n".format(train_accuracy))
+    f.write("Risultati della classificazione con rimozione di feature altamente correlate e senza feature aggiuntive:\n\n")
     for i in range(1, 6):
         threshold = 0.1 * i
         y_pred_adj = (y_pred_proba > threshold).astype(int)  # Cambiamo la soglia
         report = classification_report(y_test, y_pred_adj)
         f.write(f"Classification Report [soglia = {threshold}]:\n{report}\n\n")
     f.write("Analisi completata con successo.\n")
+
 
 print(f"I risultati sono stati salvati in {results_file}")
 
