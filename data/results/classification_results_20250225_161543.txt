@@ -1,0 +1,58 @@
+Risultati della classificazione:
+
+Classification Report [soglia = 0.1]:
+              precision    recall  f1-score   support
+
+           0       0.99      0.90      0.94      1533
+           1       0.74      0.96      0.84       436
+
+    accuracy                           0.92      1969
+   macro avg       0.86      0.93      0.89      1969
+weighted avg       0.93      0.92      0.92      1969
+
+
+Classification Report [soglia = 0.2]:
+              precision    recall  f1-score   support
+
+           0       0.98      0.95      0.96      1533
+           1       0.84      0.93      0.88       436
+
+    accuracy                           0.95      1969
+   macro avg       0.91      0.94      0.92      1969
+weighted avg       0.95      0.95      0.95      1969
+
+
+Classification Report [soglia = 0.30000000000000004]:
+              precision    recall  f1-score   support
+
+           0       0.97      0.98      0.97      1533
+           1       0.92      0.90      0.91       436
+
+    accuracy                           0.96      1969
+   macro avg       0.94      0.94      0.94      1969
+weighted avg       0.96      0.96      0.96      1969
+
+
+Classification Report [soglia = 0.4]:
+              precision    recall  f1-score   support
+
+           0       0.96      0.99      0.97      1533
+           1       0.95      0.87      0.91       436
+
+    accuracy                           0.96      1969
+   macro avg       0.96      0.93      0.94      1969
+weighted avg       0.96      0.96      0.96      1969
+
+
+Classification Report [soglia = 0.5]:
+              precision    recall  f1-score   support
+
+           0       0.96      0.99      0.97      1533
+           1       0.96      0.84      0.90       436
+
+    accuracy                           0.96      1969
+   macro avg       0.96      0.92      0.94      1969
+weighted avg       0.96      0.96      0.96      1969
+
+
+Analisi completata con successo.
