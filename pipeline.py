@@ -9,7 +9,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.utils import compute_class_weight
 
 #Carica il dataset
-df = pd.read_csv('data/Prepared_Data4.csv')
+df = pd.read_csv('data/data_preparation_results/Prepared_Data.csv')
 
 #Divisione tra variabili indipendenti e dipendenti
 y = df['FLAG']
@@ -44,7 +44,7 @@ y_pred = model.predict(x_test_scaled)
 
 # Generiamo il nome del file con data e ora
 current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-results_file = f"data/results/classification_results_{current_time}.txt"
+results_file = f"results/classification_results_{current_time}.txt"
 
 y_pred_proba = model.predict_proba(x_test_scaled)[:, 1]  # Probabilità di essere True
 
